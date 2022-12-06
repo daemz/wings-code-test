@@ -9,119 +9,92 @@
 
 import * as React from 'react';
 import {
+  Alert,
   Pressable,
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  Text,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
-import {useFetchProductList} from '@services/Product';
-import {appBuildNumberAtom, appStateAtom, appVersionAtom} from '@recoils/AppInfo';
-import {useRecoilValue} from 'recoil';
 
-const Section = ({children, title}: any) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import {useRecoilValue} from 'recoil';
+import {userDataAtom} from '@recoils/User/atoms';
+import {FormInput, Text, WingsButton} from '@components';
+import {IUser} from '@appTypes/user.type';
 
 const Main = () => {
   const navigation = useNavigation<any>();
 
-  const appVersion = useRecoilValue(appVersionAtom);
-  const appBuildNumber = useRecoilValue(appBuildNumberAtom);
-  const appState = useRecoilValue(appStateAtom);
-  
-  console.info('appVersion: ', appVersion);
-  console.info('appBuildNumber: ', appBuildNumber);
-  console.info('appState: ', appState);
+  const user = useRecoilValue(userDataAtom);
+
+  const [loginData, setLoginData] = React.useState<IUser>({
+    user: '',
+    password: '',
+  });
+
+  console.info('user: ', user);
 
   const isDarkMode = useColorScheme() === 'dark';
-
-  const {refetch: refetchProductList} = useFetchProductList({
-    enabled: false,
-  });
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const fetchProductList = async (): Promise<any> => {
-    try {
-      const {data} = await refetchProductList();
-      // console.info('data fetched nih coy: ', data);
-
-      return data;
-    } catch (err) {
-      console.error('error fetchUserData: ', err);
-      throw err;
+  const onLogin = () => {
+    if (
+      loginData?.user === user?.user &&
+      loginData?.password === user?.password
+    ) {
+      navigation.replace('Products');
+    } else {
+      Alert.alert('Incorrect Username or Password');
     }
   };
 
   React.useEffect(() => {
-    (async () => {
-      await fetchProductList();
-    })();
+    (async () => {})();
   }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
+      <View
+        style={[
+          styles.container,
+          {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <LearnMoreLinks />
-          <Pressable
-            onPress={() => {
-              navigation.navigate('Second', {shouldShowButton: false});
-              // navigation.navigate('ProductDetail', {id: '10'});
-            }}
-            style={styles.bottomButton}>
-            <Text>Go to second screen</Text>
-          </Pressable>
-        </View>
-      </ScrollView>
+          },
+        ]}>
+        <Text marginVertical={100} variant="headline1">
+          {'Login'}
+        </Text>
+        <FormInput
+          placeholder="Username"
+          value={loginData.user}
+          onChangeText={text =>
+            setLoginData({
+              ...loginData,
+              user: text,
+            })
+          }
+        />
+        <FormInput
+          placeholder="Password"
+          value={loginData.password}
+          isPassword={true}
+          onChangeText={text =>
+            setLoginData({
+              ...loginData,
+              password: text,
+            })
+          }
+        />
+        <WingsButton title="Login" onPress={onLogin} />
+      </View>
     </SafeAreaView>
   );
 };

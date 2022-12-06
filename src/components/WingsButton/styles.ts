@@ -1,19 +1,20 @@
 import {StyleSheet, ViewStyle} from 'react-native';
+
 import * as appTheme from '@assets/custom-theme.json';
 
 interface IStyles {
-  brikButtonContainer: ViewStyle;
+  bottomButton: ViewStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
-  brikButtonContainer: {
-    minWidth: '30%',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+  bottomButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    // alignSelf: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
-    borderRadius: 8,
-    backgroundColor: appTheme['color-brik-red'],
+    margin: 16,
+    borderRadius: 50,
+    backgroundColor: appTheme['tertiary'],
   },
 });
 

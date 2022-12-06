@@ -13,14 +13,15 @@ const styles = StyleSheet.create<IStyles>({
     marginBottom: 10,
   },
   textInputContainer: {
+    borderWidth: 0.5,
+    width: '80%',
     flexDirection: 'row',
-    // paddingHorizontal: 10,
+    paddingHorizontal: 10,
     marginBottom: 6,
   },
   textInput: {
     flex: 1,
     justifyContent: 'center',
-    borderBottomWidth: 1,
   },
   clearIcon: {
     justifyContent: 'center',

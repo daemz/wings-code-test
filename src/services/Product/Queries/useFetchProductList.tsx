@@ -11,7 +11,7 @@ export const fetchProductList = async (): Promise<Array<IProduct>> => {
   try {
     // const response: IApiProductListResponse = await APIClient.get('products');
 
-    return await APIClient.get('products');
+    return await APIClient.get('product');
   } catch (err: any) {
     console.error(
       'services/User/Queries/useFetchProductList',

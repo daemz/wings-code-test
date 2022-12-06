@@ -2,9 +2,12 @@ import {StyleSheet, ViewStyle} from 'react-native';
 
 interface IStyles {
   container: ViewStyle;
+  priceView: ViewStyle;
   bodyContainer: ViewStyle;
   imagePlaceholder: ViewStyle;
   variantDetail: ViewStyle;
+  productCardContainer: ViewStyle;
+  productCardRightComponent: ViewStyle;
 }
 
 const styles = StyleSheet.create<IStyles>({
@@ -13,6 +16,13 @@ const styles = StyleSheet.create<IStyles>({
     // alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: 'white',
+  },
+  priceView: {
+    padding: 10,
+    width: '80%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 0.8,
   },
   bodyContainer: {
     paddingHorizontal: 24,
@@ -25,6 +35,15 @@ const styles = StyleSheet.create<IStyles>({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  productCardContainer: {
+    // flex: 1,
+    padding: 20,
+    marginBottom: 10,
+    flexDirection: 'row',
+  },
+  productCardRightComponent: {
+    flex: 1,
   },
 });
 

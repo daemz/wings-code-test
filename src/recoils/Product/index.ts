@@ -1,0 +1,1 @@
+export {productsAtom} from './atoms';

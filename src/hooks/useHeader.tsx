@@ -12,13 +12,13 @@ interface IHeader {
   title?: string | React.ReactElement;
   onPressLeft?: () => void;
   headerRight?: React.ReactElement;
-  variant?: 'back' | 'close';
+  variant?: 'back' | 'close' | 'none';
   deps?: React.DependencyList;
 }
 
 interface IHeaderLeft {
   onBack?: () => void;
-  variant?: 'back' | 'close';
+  variant?: 'back' | 'close' | 'none';
 }
 
 const HeaderLeft = ({onBack, variant}: IHeaderLeft) => {
@@ -28,6 +28,8 @@ const HeaderLeft = ({onBack, variant}: IHeaderLeft) => {
         <Text>{BACK_BUTTON_TEXT}</Text>
       </TouchableOpacity>
     );
+  } else if (variant === 'none') {
+    return null;
   }
   return (
     <TouchableOpacity style={globalStyle.backButton} onPress={onBack}>

@@ -10,8 +10,7 @@ interface IOptions {
 
 export const fetchUser = async (): Promise<IUser> => {
   try {
-    const response: IApiUserResponse = await APIClient.get('users');
-    return response?.data;
+    return await APIClient.get('login');
   } catch (err: any) {
     console.error(
       'services/User/Queries/useFetchUser',

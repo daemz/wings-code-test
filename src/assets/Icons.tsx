@@ -64,3 +64,18 @@ export const PlusIconFill = ({
     fill={fill || appTheme['color-black-50']}
   />
 );
+
+export const TransactionIcon = ({
+  width,
+  height,
+  fill,
+  style,
+}: IconProps | ImageProps): IconElement => (
+  <Icon
+    style={style}
+    width={width || 25}
+    height={height || 25}
+    name="file-text"
+    fill={fill || appTheme['color-black-50']}
+  />
+);

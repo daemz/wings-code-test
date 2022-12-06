@@ -2,6 +2,7 @@ import 'react-native';
 
 import {
   concatenateSnakeCase,
+  formatToRupiah,
   lowerCaseFirstChar,
   recursiveParse,
   removeUndefinedAttributes,
@@ -59,4 +60,8 @@ it('lowerCaseFirstChar works well', () => {
 it('concatenateSnakeCase works well', () => {
   expect(concatenateSnakeCase('cash_on_delivery')).toEqual('cashOnDelivery');
   expect(concatenateSnakeCase('pickup_on_store')).toEqual('pickupOnStore');
+});
+it('formatToRupiah works well', () => {
+  expect(formatToRupiah(120000)).toEqual('120,000');
+  expect(formatToRupiah(2000000)).toEqual('2,000,000');
 });

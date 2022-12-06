@@ -3,6 +3,7 @@ import {StyleSheet, ViewStyle} from 'react-native';
 import * as appTheme from '@assets/custom-theme.json';
 
 interface IStyles {
+  container: ViewStyle;
   sectionContainer: ViewStyle;
   sectionTitle: ViewStyle;
   sectionDescription: ViewStyle;
@@ -11,6 +12,10 @@ interface IStyles {
 }
 
 const styles = StyleSheet.create<IStyles>({
+  container: {
+    height: '100%',
+    alignItems: 'center',
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
@@ -28,11 +33,12 @@ const styles = StyleSheet.create<IStyles>({
     fontWeight: '700',
   },
   bottomButton: {
-    flex: 1,
-    padding: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
     alignSelf: 'center',
     margin: 16,
-    backgroundColor: appTheme['color-azure'],
+    borderRadius: 50,
+    backgroundColor: appTheme['color-info-300'],
   },
 });
 

@@ -42,8 +42,8 @@ export const globalStyle = StyleSheet.create({
   },
   headerStyle: {
     // backgroundColor: appTheme['color-success-500'],
-    // backgroundColor: appTheme['color-white'],
-    backgroundColor: appTheme['color-brik-black'],
+    backgroundColor: appTheme['color-white'],
+    // backgroundColor: appTheme['color-brik-black'],
     elevation: 0,
     shadowOpacity: 0,
     borderBottomWidth: 0,
@@ -51,7 +51,7 @@ export const globalStyle = StyleSheet.create({
   headerTitleStyle: {
     fontFamily: 'Druk Text',
     textTransform: 'uppercase',
-    color: appTheme['color-brik-font-white'],
+    color: appTheme['color-black-100'],
   },
   avatarRightSpace: {marginRight: 16},
   toastStyle: {

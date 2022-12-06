@@ -12,26 +12,31 @@ interface IFormInputProps {
   style?: ViewStyle;
   marginTop?: number;
   keyboardType?: 'numeric' | 'default';
+  isPassword?: boolean;
 }
 
 const SearchBar = ({
-  label = 'A label for this text input',
+  label,
   value,
   placeholder = 'Please input something',
   onChangeText,
   style = {},
   marginTop,
   keyboardType = 'default',
+  isPassword = false,
 }: IFormInputProps) => {
   const [textValue, setTextValue] = React.useState(value);
   return (
     <Layout style={[styles.formInputContainer, style, {marginTop}]}>
-      <Text variant="headline5" fontWeight="bold">
-        {label}
-      </Text>
+      {label && (
+        <Text variant="headline5" fontWeight="bold">
+          {label}
+        </Text>
+      )}
       <Layout style={styles.textInputContainer}>
         <TextInput
           keyboardType={keyboardType}
+          secureTextEntry={isPassword}
           style={styles.textInput}
           value={textValue}
           placeholder={placeholder}
